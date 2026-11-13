@@ -33,11 +33,27 @@ void velocity_calc() {
         cin >> t;
         cout << "Your object has a velocity of " << velocity_Velocity(d, t) << " m/s";
     }
+    else if(option == 2) {
+        double v, d;
+        cout << "Enter the velocity of the object (v): ";
+        cin >> v;
+        cout << "Enter the distance traveled (m): ";
+        cin >> d;
+        cout << "It took " << velocity_Time(d, v) << "s to travel that distance";
+    }
+    else if(option == 3) {
+        double t, v;
+        cout << "Enter the velocity of the object (v): ";
+        cin >> v;
+        cout << "Enter for howw long did the object move (t): ";
+        cin >> t;
+        cout << "The object traveled " << velocity_Distance(v, t) << "m";
+    }
 }
 
 void main_menu() {
     int option;
-    cout << endl << "===MAIN=MENU==================" << endl;
+    cout << endl << endl << "===MAIN=MENU==================" << endl;
     cout << "Select a menu item below:" << endl << endl;
     cout << "[1] Velocity calculations" << endl;
     cout << "[0] Exit" << endl;
