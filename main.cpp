@@ -2,7 +2,7 @@
 
 using namespace std;
 bool notExit=true;
-const double g=9.81;
+double g=9.81;
 double price_electricity = 0;
 
 void clear_console() { // thanks to that guy on stackoverflow
@@ -448,6 +448,52 @@ void electricity_bill() {
     electricity_bill();
 }
 
+void gravitation_menu() {
+    int option;
+    cout << endl << "SELECT PLANET" << endl;
+    cout << "Selecting a planet changes the gravitational acceleration. Currently g=" << g << endl << endl;
+    cout << "Chose a planet/moon below:" << endl;
+    cout << "[1] Earth (9.81)" << endl;
+    cout << "[2] Earth\'s moon (1.62)" << endl;
+    cout << "[3] Mars (3.72)" << endl;
+    cout << "[4] Venus (8.87)" << endl;
+    cout << "[5] Custom" << endl;
+
+    cout << "Enter your selection: ";
+    cin >> option;
+    if(option == 1) g=9.81;
+    else if(option == 2) g=1.62;
+    else if(option == 3) g=3.72;
+    else if(option == 4) g=8.87;
+    else if(option == 5) {
+        cout << "Enter your custom gravitational acceleration: ";
+        cin >> g;
+        while(g==0) {
+            cout << "The gravitational acceleration cannot be 0. Enter a non-zero value: ";
+            cin >> g;
+        }
+        while(g<0) {
+            char answer;
+            cout << "Are you sure that on your planet things fall upwards? Enter [Y/N]: ";
+            cin >> answer;
+            if(toupper(answer) == 'N') {
+                cout << "Then enter a positive value: ";
+                cin >> g;
+                if(g==0) g=9.81; // I dont know how to check if the user enters 0, then a negative number, then N, then 0 again, so if that happens, the g just will be 0. Sorry xD
+            }
+            else if(toupper(answer) == 'Y') break;
+        }
+        
+    }
+    else {
+        cout << "No such option exists.";
+    }
+    cout << endl << "Press enter to return to main menu";
+    cin.ignore();
+    cin.get();
+    clear_console();
+}
+
 void main_menu() {
     int option;
     cout << endl << "===MAIN=MENU==================" << endl;
@@ -456,6 +502,8 @@ void main_menu() {
     cout << "[2] Density calculations" << endl;
     cout << "[3] Energy calculations" << endl;
     cout << "[4] Electricity bill calculator" << endl;
+    cout << "==============================" << endl;
+    cout << "[9] Select planet" << endl;
     cout << "==============================" << endl;
     cout << "[0] Exit" << endl;
 
@@ -466,6 +514,7 @@ void main_menu() {
     else if(option == 2) density_calc();
     else if(option == 3) energy_calc_menu();
     else if(option == 4) electricity_bill();
+    else if(option == 9) gravitation_menu();
     else if(option == 0) {
         notExit=false;
     }
