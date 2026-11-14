@@ -3,6 +3,7 @@
 using namespace std;
 bool notExit=true;
 const double g=9.81;
+double price_electricity = 0;
 
 void clear_console() { // thanks to that guy on stackoverflow
     cout << "\033[2J\033[1;1H";
@@ -381,6 +382,64 @@ void energy_potential() {
     energy_potential();
 }
 
+void electricity_bill() {
+    int option;
+    double power, time;
+    cout << endl << "ELECTRICITY BILL CALCULATOR" << endl;
+    if(price_electricity==0) cout << "NOTE: The price of electricity is currently not set. Please, enter a value by selecting [9]." << endl;
+    else cout << "The price of 1 kWh is set to " << price_electricity << endl;
+    cout << "What would you like to know?" << endl;
+    cout << "[1] How much does a specific applience cost?" << endl;
+    cout << "[2] How much is the bill for the whole month?" << endl;
+    cout << "==============================" << endl;
+    cout << "[9] Change electricity price" << endl;
+    cout << "[0] Return to main menu" << endl;
+    cout << "Enter your selection: ";
+    cin >> option;
+
+    if(option == 1) {
+        cout << "Enter how much is the hourly consumption of the device in watts: ";
+        cin >> power;
+        while(power<0) {
+            cout << "Your device can\'t have negative consumption. Enter a poditive value: ";
+            cin >> power;
+        }
+        cout << "Enter for how long did you use the device (hours): ";
+        cin >> time;
+        while(time<0) {
+            cout << "Your device can\'t be used for a negative amount of time. Enter a poditive value: ";
+            cin >> time;
+        }
+        cout << "Your device consumed " << power*time/1000 << " kWhs and, it cost you " << power*time*price_electricity/1000; 
+    }
+    else if(option == 2) {
+        cout << "Enter how much do you consume monthly, in kWh: ";
+        cin >> power;
+        cout << "Your bill for this month should be " << price_electricity*power;
+    }
+    else if(option == 9) {
+        cout << "CHANGE PRICE" << endl;
+        cout << "Enter the price 1 kWh of electricity (don't put currency signs next to it): ";
+        cin >> price_electricity;
+        while(price_electricity<=0) {
+            cout << "Sadly, electricity is not free. Enter a non-zero positive value: ";
+            cin >> price_electricity;
+        }
+    }
+    else if(option == 0) {
+        clear_console();
+        return;
+    }
+    else {
+        cout << "No such option exists.";
+    }
+    cout << endl << "Press enter to return";
+    cin.ignore();
+    cin.get();
+    clear_console();
+    electricity_bill();
+}
+
 void main_menu() {
     int option;
     cout << endl << "===MAIN=MENU==================" << endl;
@@ -388,6 +447,7 @@ void main_menu() {
     cout << "[1] Velocity calculations" << endl;
     cout << "[2] Density calculations" << endl;
     cout << "[3] Energy calculations" << endl;
+    cout << "[4] Electricity bill calculator" << endl;
     cout << "==============================" << endl;
     cout << "[0] Exit" << endl;
 
@@ -397,6 +457,7 @@ void main_menu() {
     if(option == 1) velocity_calc();
     else if(option == 2) density_calc();
     else if(option == 3) energy_calc_menu();
+    else if(option == 4) electricity_bill();
     else if(option == 0) {
         notExit=false;
     }
