@@ -5,6 +5,24 @@ bool notExit=true;
 double g=9.81;
 double price_electricity = 0;
 
+char fun_facts[15][200] {
+    "Isaac Newton published his three laws of motion in Principia in 1687.",
+    "One newton is roughly the weight of a small apple.",
+    "If you double an object's speed, its kinetic energy becomes four times bigger.",
+    "A typical lightning bolt carries around a billion joules of energy.",
+    "Golf ball dimples reduce drag, which lets a golf ball fly much farther than a smooth ball would.",
+    "A launch at 45 degrees gives the longest range.",
+    "A feather falls slowly on Earth only because of air resistance. In a vacuum, it falls as fast as a Framework 12.",
+    "During the Apollo 15 mission in 1971, astronaut David Scott dropped a hammer and a feather on the Moon, and they hit the ground at the same time.",
+    "The Sun's surface gravity is about 274 m/s^2, roughly 28 times Earth's.",
+    "Static friction is usually stronger than kinetic friction, which is why it's harder to start pushing a heavy object than to keep it sliding.",
+    "At the top of Mount Everest, gravity is about 0.3% weaker than at sea level.",
+    "Sunlight takes about 8 minutes and 20 seconds to reach Earth.",
+    "If an atom were the size of a football stadium, its nucleus would be about the size of a marble",
+    "Voyager 1 is the most distant human-made object ever, currently more than 28 billion km from us",
+    ""
+};
+
 void clear_console() { // thanks to that guy on stackoverflow
     cout << "\033[2J\033[1;1H";
 }
@@ -452,6 +470,7 @@ void electricity_bill() {
 void fall_calc() {
     int option;
     cout << endl << "FREE-FALL CALCULATIONS" << endl;
+    cout << "Currently, the gravitational acceleration is set to " << g << " m/s^2" << endl;
     cout << "NOTE: These calculations don't concern themselfs with air resistence" << endl;
     cout << "What would you like to calculate?" << endl;
     cout << "[1] How fast does an object fall" << endl;
@@ -544,6 +563,16 @@ void gravitation_menu() {
     clear_console();
 }
 
+void fun_fact_finder() {
+    cout << endl << "FUN FACTS" << endl;
+    int fact = rand()%15+1;
+    cout << "FUN FACT #" << fact << ": " << fun_facts[fact-1] << endl;
+    cout << "Press enter to return to main menu";
+    cin.ignore();
+    cin.get();
+    clear_console();
+}
+
 void main_menu() {
     int option;
     cout << endl << "===MAIN=MENU==================" << endl;
@@ -553,7 +582,8 @@ void main_menu() {
     cout << "[3] Energy calculations" << endl;
     cout << "[4] Free-fall calculations" << endl;
     cout << "[5] Electricity bill calculator" << endl;
-    cout << "==============================" << endl;
+    cout << "===FUN=EXTRAS=================" << endl;
+    cout << "[8] Very fun facts" << endl;
     cout << "[9] Select planet" << endl;
     cout << "==============================" << endl;
     cout << "[0] Exit" << endl;
@@ -566,6 +596,7 @@ void main_menu() {
     else if(option == 3) energy_calc_menu();
     else if(option == 4) fall_calc();
     else if(option == 5) electricity_bill();
+    else if(option == 8) fun_fact_finder();
     else if(option == 9) gravitation_menu();
     else if(option == 0) {
         notExit=false;
@@ -579,6 +610,7 @@ void main_menu() {
 
 int main()
 {
+    srand(time(0));
     clear_console();
     cout << "====  PHYSICS CALCULATOR  ====" << endl;
     cout << "------  MADE FOR TERRA  ------" << endl;
