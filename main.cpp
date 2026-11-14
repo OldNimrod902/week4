@@ -3,6 +3,10 @@
 using namespace std;
 bool notExit=true;
 
+void clear_console() { // thanks to that guy on stackoverflow
+    cout << "\033[2J\033[1;1H";
+}
+
 double velocity_Velocity(double d, double t) {
     return d/t;
 }
@@ -22,6 +26,8 @@ void velocity_calc() {
     cout << "[1] How fast does something travel (v)" << endl;
     cout << "[2] How long does it take to travel a distance (t)" << endl;
     cout << "[3] How far can something travel in an amount of time (d)" << endl;
+    cout << "==============================" << endl;
+    cout << "[0] Return to main menu" << endl;
 
     cout << "Enter your choice: ";
     cin >> option;
@@ -69,6 +75,19 @@ void velocity_calc() {
         }
         cout << "The object traveled " << velocity_Distance(v, t) << "m";
     }
+    else if(option==0) {
+        clear_console();
+        return;
+    }
+    else {
+        cout << "No such option exists. ";
+    }
+
+    cout << endl << "Press enter to return";
+    cin.ignore();
+    cin.get();
+    clear_console();
+    velocity_calc();
 }
 
 void main_menu() {
@@ -76,10 +95,12 @@ void main_menu() {
     cout << endl << endl << "===MAIN=MENU==================" << endl;
     cout << "Select a menu item below:" << endl << endl;
     cout << "[1] Velocity calculations" << endl;
+    cout << "==============================" << endl;
     cout << "[0] Exit" << endl;
 
     cout << "Enter your selection: ";
     cin >> option;
+    clear_console();
     if(option == 1) velocity_calc();
     else if(option == 0) {
         notExit=false;
@@ -93,9 +114,11 @@ void main_menu() {
 
 int main()
 {
+    clear_console();
     cout << "====  PHYSICS CALCULATOR  ====" << endl;
     cout << "------  MADE FOR TERRA  ------" << endl;
     cout << "-------  by Timoti902  -------" << endl << endl;
+    cout << "Note: the app displays SI units by default, but most calculations\nwork with any unit, just be careful with mixing them." << endl;
     do {
         main_menu();
     } while(notExit);
