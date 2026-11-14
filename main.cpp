@@ -20,7 +20,20 @@ char fun_facts[15][200] {
     "Sunlight takes about 8 minutes and 20 seconds to reach Earth.",
     "If an atom were the size of a football stadium, its nucleus would be about the size of a marble",
     "Voyager 1 is the most distant human-made object ever, currently more than 28 billion km from us",
-    ""
+    "Water is the densest on 4 degrees Celsius, so it takes up the least amount of space on that temperature."
+};
+
+struct questions{
+    double answer;
+    char text[400];
+};
+
+questions quiz_questions[5] = {
+    {4.27, "Ratticus is chasing you, because you did not pay your rent in time. He started 10 meters behind you and after 30 seconds,\nhe is only 2 meters behind you. You are running with 4 m/s. How fast is Ratticus, in m/s? v="},
+    {5.48, "You just got a shiny iPad Air 11\' M4 from Terra, but you're irresponsible and dropped it.\nIt fell from your hands, 1.5 meters high. How fast did it hit the ground, in m/s? v="},
+    {58.86, "Poobert pushes up 3kg of letters up a 2 meter high ramp. How much potential energy do the letters gain in joules? Let g=9.81 m/s^2. E="},
+    {0.61, "You just spent your coins on a Blahaj at the shop, but you accidentally left it there. But no worries, Heide threw it after you at 30 degrees with 7 m/s speed. What was the maximum height Blahaj reached in meters? Let g=10 m/s^2 h="},
+    {3.16, "You asked Blargh to take you to your island. You were really excited but you fell out of\nhis hot air balloon that was 100 meters in the sky.\nHow much time did elapse, until you where at an equal distance from the ground and the hot air balloon, in seconds? t="}
 };
 
 void clear_console() { // thanks to that guy on stackoverflow
@@ -475,7 +488,8 @@ void fall_calc() {
     cout << "What would you like to calculate?" << endl;
     cout << "[1] How fast does an object fall" << endl;
     cout << "[2] Projectile motion (with an angle)" << endl;
-    
+    cout << "==============================" << endl;
+    cout << "[0] Return to main menu";
     cout << "Enter your selection: ";
     cin >> option;
     if(option == 1) {
@@ -505,6 +519,10 @@ void fall_calc() {
         }
         angle=angle*M_PI/180;
         cout << "Your object reaches the ground in " << 2*v*sin(angle)/g << " seconds,\nit reaches a maximum height of " << v*v*sin(angle)*sin(angle)/(2*g) << " metres,\nand travels " << v*v*sin(2*angle)/g << " metres horizontally.";
+    }
+    else if(option == 0) {
+        clear_console();
+        return;
     }
     else {
         cout << "No such option exists.";
@@ -573,49 +591,113 @@ void fun_fact_finder() {
     clear_console();
 }
 
+void answer_correctness(double input, double result) {
+    if(fabs(input-result)<0.01) cout << "Amazing! You're right!" << endl;
+    else cout << "You're wrong. The correct answer was " << result << endl;
+}
+
 void quiz_menu() {
     int option;
     cout << endl << "QUIZZES" << endl;
-    cout << "Select a type of quiz from below" << endl;
+    cout << "Select a type of quiz from below. You have an error margin of 0.01." << endl;
     cout << "[1] Velocity related questions" << endl;
     cout << "[2] Energy related questions" << endl;
     cout << "[3] Electricity related questions" << endl;
-    cout << "[4] Hand-made, harder questions" << endl;
-
+    cout << "[4] Hand-made, harder questions {**TERRA THEMED**}" << endl;
+    cout << "==============================" << endl;
+    cout << "[0] Return to main menu" << endl;
     cout << "Enter your selection: ";
     cin >> option;
     if(option == 1) {
-        double time, velocity, distance, error_tolarence=0.01;
+        double time, velocity, distance;
         int type = rand()%3+1;
         if(type==1) {
             time=(rand()%10+1)/2.0;
             distance=rand()%186+15;
             cout << "A car travels " << distance << " kms in " << time << " hours. What's the average speed of the car in km/h? v=";
             cin >> velocity;
-            if(fabs(velocity-distance/time)<error_tolarence) cout << "Amazing! You're right!" << endl;
-            else cout << "You're wrong" << endl;
+            answer_correctness(velocity, distance/time);
         }
         else if(type==2) {
             distance=rand()%186+15;
             velocity=rand()%101+15;
             cout << "A bus's average speed is " << velocity << " km/h. It goes on a trip between two cities, that are " << distance << " kms apart. How long will it take for the bus to travel across the cities in hours? t=";
             cin >> time;
-            if(fabs(time-distance/velocity)<error_tolarence) cout << "Amazing! You're right!" << endl;
-            else cout << "You're wrong" << endl;
+            answer_correctness(time, distance/velocity);
         }
         else if(type==3) {
             time=(rand()%10+1)/2.0;
             velocity=rand()%31+15;
             cout << "A motorboat has an average speed of " << velocity << " km/h and yesterday it went out on the lake for " << time <<" hours. How far away did it go in kilometers? d=";
             cin >> distance;
-            if(fabs(distance-time*velocity)<error_tolarence) cout << "Amazing! You're right!" << endl;
-            else cout << "You're wrong" << endl;
+            answer_correctness(distance, velocity*time);
         }
     }
-    cout << "Press enter to return to main menu";
+    else if(option == 2) {
+        double energy, velocity, height, mass;
+        int type = rand()%3+1;
+        if(type==1) {
+            height=rand()%201+1;
+            mass=(rand()%41+1)/2.0;
+            cout << "An object with a mass of " << mass << " kg is " << height << " metres above the ground. What's its potential energy in joules? E=";
+            cin >> energy;
+            answer_correctness(energy, mass*height*g);
+        }
+        else if(type==2) {
+            energy=rand()%1001+1;
+            mass=(rand()%41+1)/2.0;
+            cout << "An object with " << energy << " joules of potential energy has a mass of " << mass << " kg. How far away it is from the ground in metres? d=";
+            cin >> height;
+            answer_correctness(height, energy/(mass*g));
+        }
+        else if(type==3) {
+            velocity=rand()%31+1;
+            mass=(rand()%41+1)/2.0;
+            cout << "An object has a velocity of " << velocity << " m/s and it weighs " << mass << " kg. How much kinetic energy does it have in joules? E=";
+            cin >> energy;
+            answer_correctness(energy, (mass*velocity*velocity)/2);
+        }
+    }
+    else if(option == 3) {
+        double power, time, price, priceOfOne;
+        int type = rand()%2+1;
+        if(type==1) {
+            power=rand()%781+20;
+            time=rand()%20+1;
+            priceOfOne=rand()%20+15;
+            cout << "The price of electricity is " << priceOfOne << " cents/kWh. A device in your house was working for " << time << " hours, and it consumes " << power << " watts. How much did it cost you in cents? price=";
+            cin >> price;
+            answer_correctness(price, time*power*priceOfOne/1000.0);
+        }
+        else if(type==2) {
+            power=rand()%200+150;
+            price=(rand()%20+15)*power/100.00;
+            cout << "You consumed " << power << " kWh of electricity this month, and your bill was " << price << " dollars. How much does a kWh of electricity cost you, in dollars? price=";
+            cin >> priceOfOne;
+            answer_correctness(priceOfOne, price/power);
+        }
+    }
+    else if(option == 4) {
+        double answer;
+        int question_number = rand()%5;
+        cout << "Answer the question below: ";
+        cout << "QUESTION No." << question_number+1 << endl;
+        cout << quiz_questions[question_number].text;
+        cin >> answer;
+        answer_correctness(answer, quiz_questions[question_number].answer);
+    }
+    else if(option == 0) {
+        clear_console();
+        return;
+    }
+    else {
+        cout << "No such option exists.";
+    }
+    cout << endl << "Press enter to return";
     cin.ignore();
     cin.get();
     clear_console();
+    quiz_menu();
 }
 
 void main_menu() {
