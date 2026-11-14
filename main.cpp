@@ -564,9 +564,54 @@ void gravitation_menu() {
 }
 
 void fun_fact_finder() {
-    cout << endl << "FUN FACTS" << endl;
-    int fact = rand()%15+1;
-    cout << "FUN FACT #" << fact << ": " << fun_facts[fact-1] << endl;
+    cout << endl << "FUN FACTS" << endl << endl;
+    int fact = rand()%15;
+    cout << "FUN FACT #" << fact+1 << ": " << fun_facts[fact] << endl;
+    cout << "Press enter to return to main menu";
+    cin.ignore();
+    cin.get();
+    clear_console();
+}
+
+void quiz_menu() {
+    int option;
+    cout << endl << "QUIZZES" << endl;
+    cout << "Select a type of quiz from below" << endl;
+    cout << "[1] Velocity related questions" << endl;
+    cout << "[2] Energy related questions" << endl;
+    cout << "[3] Electricity related questions" << endl;
+    cout << "[4] Hand-made, harder questions" << endl;
+
+    cout << "Enter your selection: ";
+    cin >> option;
+    if(option == 1) {
+        double time, velocity, distance, error_tolarence=0.01;
+        int type = rand()%3+1;
+        if(type==1) {
+            time=(rand()%10+1)/2.0;
+            distance=rand()%186+15;
+            cout << "A car travels " << distance << " kms in " << time << " hours. What's the average speed of the car in km/h? v=";
+            cin >> velocity;
+            if(fabs(velocity-distance/time)<error_tolarence) cout << "Amazing! You're right!" << endl;
+            else cout << "You're wrong" << endl;
+        }
+        else if(type==2) {
+            distance=rand()%186+15;
+            velocity=rand()%101+15;
+            cout << "A bus's average speed is " << velocity << " km/h. It goes on a trip between two cities, that are " << distance << " kms apart. How long will it take for the bus to travel across the cities in hours? t=";
+            cin >> time;
+            if(fabs(time-distance/velocity)<error_tolarence) cout << "Amazing! You're right!" << endl;
+            else cout << "You're wrong" << endl;
+        }
+        else if(type==3) {
+            time=(rand()%10+1)/2.0;
+            velocity=rand()%31+15;
+            cout << "A motorboat has an average speed of " << velocity << " km/h and yesterday it went out on the lake for " << time <<" hours. How far away did it go in kilometers? d=";
+            cin >> distance;
+            if(fabs(distance-time*velocity)<error_tolarence) cout << "Amazing! You're right!" << endl;
+            else cout << "You're wrong" << endl;
+        }
+    }
     cout << "Press enter to return to main menu";
     cin.ignore();
     cin.get();
@@ -583,6 +628,7 @@ void main_menu() {
     cout << "[4] Free-fall calculations" << endl;
     cout << "[5] Electricity bill calculator" << endl;
     cout << "===FUN=EXTRAS=================" << endl;
+    cout << "[7] Quiz" << endl;
     cout << "[8] Very fun facts" << endl;
     cout << "[9] Select planet" << endl;
     cout << "==============================" << endl;
@@ -596,6 +642,7 @@ void main_menu() {
     else if(option == 3) energy_calc_menu();
     else if(option == 4) fall_calc();
     else if(option == 5) electricity_bill();
+    else if(option == 7) quiz_menu();
     else if(option == 8) fun_fact_finder();
     else if(option == 9) gravitation_menu();
     else if(option == 0) {
