@@ -397,7 +397,15 @@ void electricity_bill() {
     cout << "Enter your selection: ";
     cin >> option;
 
-    if(option == 1) {
+    if(price_electricity==0 && option !=9) {
+        cout << "First, please enter the price 1 kWh of electricity (don't put currency signs next to it): ";
+        cin >> price_electricity;
+        while(price_electricity<=0) {
+            cout << "Sadly, electricity is not free. Enter a non-zero positive value: ";
+            cin >> price_electricity;
+        }
+    }
+    else if(option == 1) {
         cout << "Enter how much is the hourly consumption of the device in watts: ";
         cin >> power;
         while(power<0) {
