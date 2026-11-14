@@ -19,6 +19,19 @@ double velocity_Time(double d, double v) {
     return d/v;
 }
 
+double density_Density(double v, double m) {
+    return m/v;
+}
+
+double density_Volume(double d, double m) {
+    return m/d;
+}
+
+double density_Mass(double v, double d) {
+    return v*d;
+}
+
+
 void velocity_calc() {
     int option;
     cout << endl << "VELOCITY" << endl;
@@ -29,7 +42,7 @@ void velocity_calc() {
     cout << "==============================" << endl;
     cout << "[0] Return to main menu" << endl;
 
-    cout << "Enter your choice: ";
+    cout << "Enter your selection: ";
     cin >> option;
     if(option == 1) {
         double d, t;
@@ -80,7 +93,7 @@ void velocity_calc() {
         return;
     }
     else {
-        cout << "No such option exists. ";
+        cout << "No such option exists.";
     }
 
     cout << endl << "Press enter to return";
@@ -90,11 +103,86 @@ void velocity_calc() {
     velocity_calc();
 }
 
+void density_calc() {
+    int option;
+    cout << endl << "DENSITY" << endl;
+    cout << "What would you like to know?" << endl;
+    cout << "[1] The density of something" << endl;
+    cout << "[2] The volume of something" << endl;
+    cout << "[3] The mass of something" << endl;
+    cout << "==============================" << endl;
+    cout << "[0] Return to main menu" << endl;
+
+    cout << "Enter your selection: ";
+    cin >> option;
+    if(option == 1) {
+        double v, m;
+        cout << "Enter the volume (m^3): ";
+        cin >> v;
+        while(v<=0) {
+            cout << "An object cannot have negative or no volume. Please, enter a poitive value: ";
+            cin >> v;
+        }
+        cout << "Enter the mass (kg): ";
+        cin >> m;
+        while(m<=0) {
+            cout << "An object cannot have negative or no mass. Please, enter a positive value: ";
+            cin >> m;
+        }
+        cout << "Your object has a density of " << density_Density(v, m) << " m^3/kg";
+    }
+    else if(option == 2) {
+        double v, m;
+        cout << "Enter the density (m^3/kg): ";
+        cin >> v;
+        while(v<=0) {
+            cout << "An object cannot have negative or no density. Please, enter a poitive value: ";
+            cin >> v;
+        }
+        cout << "Enter the mass (kg): ";
+        cin >> m;
+        while(m<=0) {
+            cout << "An object cannot have negative or no mass. Please, enter a positive value: ";
+            cin >> m;
+        }
+        cout << "Your object has a volume of " << density_Volume(v, m) << " m^3";
+    }
+    else if(option == 3) {
+        double d, v;
+        cout << "Enter the volume (m^3): ";
+        cin >> v;
+        while(v<=0) {
+            cout << "An object cannot have negative or no volume. Please, enter a poitive value: ";
+            cin >> v;
+        }
+        cout << "Enter the density (m^3/kg): ";
+        cin >> d;
+        while(d<=0) {
+            cout << "An object cannot have negative or no density. Please, enter a positive value: ";
+            cin >> d;
+        }
+        cout << "Your object has a mass of " << density_Mass(v, d) << " kg";
+    }
+    else if(option == 0) {
+        clear_console();
+        return;
+    }
+    else{
+        cout << "No such option exists.";
+    }
+    cout << endl << "Press enter to return";
+    cin.ignore();
+    cin.get();
+    clear_console();
+    density_calc();
+}
+
 void main_menu() {
     int option;
     cout << endl << endl << "===MAIN=MENU==================" << endl;
     cout << "Select a menu item below:" << endl << endl;
     cout << "[1] Velocity calculations" << endl;
+    cout << "[2] Density calculations" << endl;
     cout << "==============================" << endl;
     cout << "[0] Exit" << endl;
 
@@ -102,6 +190,7 @@ void main_menu() {
     cin >> option;
     clear_console();
     if(option == 1) velocity_calc();
+    else if(option == 2) density_calc();
     else if(option == 0) {
         notExit=false;
     }
