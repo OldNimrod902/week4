@@ -467,7 +467,7 @@ void fall_calc() {
             cout << "The height cannot be a negative value. Please enter a non-negative value: ";
             cin >> h;
         }
-        cout << "Your objects reaches the ground in " << sqrt(2*h/g) << " secdonds, and at moment of collission it has a velocity of " << sqrt(2*g*h) << " m/s";
+        cout << "Your objects reaches the ground in " << sqrt(2*h/g) << " seconds, and at moment of collission it has a velocity of " << sqrt(2*g*h) << " m/s";
     }
     else if(option == 2) {
         double angle, v;
