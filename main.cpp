@@ -309,6 +309,7 @@ void energy_kinetic() {
 void energy_potential() {
     int option;
     cout << endl << "POTENTIAL ENERGY" << endl;
+    cout << "Currently, the gravitational acceleration is set to " << g << " m/s^2" << endl;
     cout << "What would you like to know?" << endl;
     cout << "[1] The potential energy of something" << endl;
     cout << "[2] The height of something" << endl;
@@ -448,10 +449,59 @@ void electricity_bill() {
     electricity_bill();
 }
 
+void fall_calc() {
+    int option;
+    cout << endl << "FREE-FALL CALCULATIONS" << endl;
+    cout << "NOTE: These calculations don't concern themselfs with air resistence" << endl;
+    cout << "What would you like to calculate?" << endl;
+    cout << "[1] How fast does an object fall" << endl;
+    cout << "[2] Projectile motion (with an angle)" << endl;
+    
+    cout << "Enter your selection: ";
+    cin >> option;
+    if(option == 1) {
+        double h;
+        cout << "Enter the height from which the object falls (m): ";
+        cin >> h;
+        while(h<0) {
+            cout << "The height cannot be a negative value. Please enter a non-negative value: ";
+            cin >> h;
+        }
+        cout << "Your objects reaches the ground in " << sqrt(2*h/g) << " secdonds, and at moment of collission it has a velocity of " << sqrt(2*g*h) << " m/s";
+    }
+    else if(option == 2) {
+        double angle, v;
+        
+        cout << "Enter the velocity at which the object gets launched (m/s): ";
+        cin >> v;
+        while(v<0) {
+            cout << "The velocity cannot be a negative value. Please enter a non-negative value: ";
+            cin >> v;
+        }
+        cout << "Enter the angle at which the object gets launched (degrees): ";
+        cin >> angle;
+        while(angle<0) {
+            cout << "The angle cannot be a negative value. Please enter a non-negative value: ";
+            cin >> angle;
+        }
+        angle=angle*M_PI/180;
+        cout << "Your object reaches the ground in " << 2*v*sin(angle)/g << " seconds,\nit reaches a maximum height of " << v*v*sin(angle)*sin(angle)/(2*g) << " metres,\nand travels " << v*v*sin(2*angle)/g << " metres horizontally.";
+    }
+    else {
+        cout << "No such option exists.";
+    }
+    cout << endl << "Press enter to return";
+    cin.ignore();
+    cin.get();
+    clear_console();
+    electricity_bill();
+
+}
+
 void gravitation_menu() {
     int option;
     cout << endl << "SELECT PLANET" << endl;
-    cout << "Selecting a planet changes the gravitational acceleration. Currently g=" << g << endl << endl;
+    cout << "Selecting a planet changes the gravitational acceleration. Currently g=" << g << " m/s^2" << endl << endl;
     cout << "Chose a planet/moon below:" << endl;
     cout << "[1] Earth (9.81)" << endl;
     cout << "[2] Earth\'s moon (1.62)" << endl;
@@ -501,7 +551,8 @@ void main_menu() {
     cout << "[1] Velocity calculations" << endl;
     cout << "[2] Density calculations" << endl;
     cout << "[3] Energy calculations" << endl;
-    cout << "[4] Electricity bill calculator" << endl;
+    cout << "[4] Free-fall calculations" << endl;
+    cout << "[5] Electricity bill calculator" << endl;
     cout << "==============================" << endl;
     cout << "[9] Select planet" << endl;
     cout << "==============================" << endl;
@@ -513,7 +564,8 @@ void main_menu() {
     if(option == 1) velocity_calc();
     else if(option == 2) density_calc();
     else if(option == 3) energy_calc_menu();
-    else if(option == 4) electricity_bill();
+    else if(option == 4) fall_calc();
+    else if(option == 5) electricity_bill();
     else if(option == 9) gravitation_menu();
     else if(option == 0) {
         notExit=false;
