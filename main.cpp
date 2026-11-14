@@ -29,24 +29,44 @@ void velocity_calc() {
         double d, t;
         cout << "Enter the distance traveled (m): ";
         cin >> d;
+        while(d<0) {
+            cout << "An object cannot travel negative distance. Please, enter a poitive value: ";
+            cin >> d;
+        }
         cout << "Enter the time it took to travel that distance (s): ";
         cin >> t;
+        while(t<=0) {
+            cout << "An object cannot travel for a negative amount of time. Please, enter a positive value: ";
+            cin >> t;
+        }
         cout << "Your object has a velocity of " << velocity_Velocity(d, t) << " m/s";
     }
     else if(option == 2) {
         double v, d;
         cout << "Enter the velocity of the object (v): ";
         cin >> v;
+        while(v<0) {
+            cout << "The velocity of an object cannot be negative. Please, enter a positive value: ";
+            cin >> v;
+        }
         cout << "Enter the distance traveled (m): ";
         cin >> d;
+        while(d<0) {
+            cout << "An object cannot travel negative distance. Please, enter a poitive value: ";
+            cin >> d;
+        }
         cout << "It took " << velocity_Time(d, v) << "s to travel that distance";
     }
     else if(option == 3) {
         double t, v;
         cout << "Enter the velocity of the object (v): ";
         cin >> v;
-        cout << "Enter for howw long did the object move (t): ";
+        cout << "Enter for how long did the object move (t): ";
         cin >> t;
+        while(t<=0) {
+            cout << "An object cannot travel for a negative amount of time. Please, enter a positive value: ";
+            cin >> t;
+        }
         cout << "The object traveled " << velocity_Distance(v, t) << "m";
     }
 }
