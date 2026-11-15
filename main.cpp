@@ -8,6 +8,8 @@ double price_electricity = 0;
 int quiz_responses=0;
 int quiz_correct=0;
 
+ofstream fout("results.txt");
+
 char fun_facts[15][200] {
     "Isaac Newton published his three laws of motion in Principia in 1687.",
     "One newton is roughly the weight of a small apple.",
@@ -105,6 +107,7 @@ double torque_Lenght(double t, double f) {
 
 void velocity_calc() {
     int option;
+    double v, d, t;
     cout << endl << "===VELOCITY=CALCULATIONS======" << endl;
     cout << "What would you like to know?" << endl;
     cout << "[1] How fast does something travel (v)" << endl;
@@ -116,7 +119,6 @@ void velocity_calc() {
     cout << "Enter your selection: ";
     cin >> option;
     if(option == 1) {
-        double d, t;
         cout << "Enter the distance traveled (m): ";
         cin >> d;
         while(d<0) {
@@ -130,9 +132,9 @@ void velocity_calc() {
             cin >> t;
         }
         cout << "Your object has a velocity of " << velocity_Velocity(d, t) << " m/s";
+        v=velocity_Velocity(d, t);
     }
     else if(option == 2) {
-        double v, d;
         cout << "Enter the velocity of the object (m/s): ";
         cin >> v;
         while(v<=0) {
@@ -146,9 +148,9 @@ void velocity_calc() {
             cin >> d;
         }
         cout << "It took " << velocity_Time(d, v) << "s to travel that distance";
+        t=velocity_Time(d, v);
     }
     else if(option == 3) {
-        double t, v;
         cout << "Enter the velocity of the object (m/s): ";
         cin >> v;
         while(v<=0) {
@@ -162,6 +164,7 @@ void velocity_calc() {
             cin >> t;
         }
         cout << "The object traveled " << velocity_Distance(v, t) << "m";
+        d=velocity_Distance(v, t);
     }
     else if(option==0) {
         clear_console();
@@ -169,6 +172,10 @@ void velocity_calc() {
     }
     else {
         cout << "No such option exists.";
+    }
+
+    if(option==1 || option==2 || option==3) {
+        fout << "v=" << v << " d=" << d << " t=" << t << endl;
     }
 
     cout << endl << "Press enter to return";
@@ -180,6 +187,7 @@ void velocity_calc() {
 
 void density_calc() {
     int option;
+    double v, m, d;
     cout << endl << "===DENSITY=CALCULATIONS=======" << endl;
     cout << "What would you like to know?" << endl;
     cout << "[1] The density of something" << endl;
@@ -191,7 +199,6 @@ void density_calc() {
     cout << "Enter your selection: ";
     cin >> option;
     if(option == 1) {
-        double v, m;
         cout << "Enter the volume (m^3): ";
         cin >> v;
         while(v<=0) {
@@ -205,9 +212,9 @@ void density_calc() {
             cin >> m;
         }
         cout << "Your object has a density of " << density_Density(v, m) << " kg/m^3";
+        d=density_Density(v, m);
     }
     else if(option == 2) {
-        double v, m;
         cout << "Enter the density (kg/m^3): ";
         cin >> v;
         while(v<=0) {
@@ -221,9 +228,9 @@ void density_calc() {
             cin >> m;
         }
         cout << "Your object has a volume of " << density_Volume(v, m) << " m^3";
+        v=density_Volume(v, m);
     }
     else if(option == 3) {
-        double d, v;
         cout << "Enter the volume (m^3): ";
         cin >> v;
         while(v<=0) {
@@ -237,6 +244,7 @@ void density_calc() {
             cin >> d;
         }
         cout << "Your object has a mass of " << density_Mass(v, d) << " kg";
+        m=density_Mass(v, d);
     }
     else if(option == 0) {
         clear_console();
@@ -245,6 +253,11 @@ void density_calc() {
     else{
         cout << "No such option exists.";
     }
+
+    if(option==1 || option==2 || option==3) {
+        fout << "D=" << d << " V=" << v << " m=" << m << endl;
+    }
+
     cout << endl << "Press enter to return";
     cin.ignore();
     cin.get();
@@ -520,6 +533,7 @@ void fall_calc() {
             cin >> h;
         }
         cout << "Your objects reaches the ground in " << sqrt(2*h/g) << " seconds, and at moment of collission it has a velocity of " << sqrt(2*g*h) << " m/s";
+        fout << "h=" << h << " t=" << sqrt(2*h/g) << " v=" << sqrt(2*g*h) << " (free-fall)" << endl;
     }
     else if(option == 2) {
         double angle, v;
@@ -538,6 +552,7 @@ void fall_calc() {
         }
         angle=angle*M_PI/180;
         cout << "Your object reaches the ground in " << 2*v*sin(angle)/g << " seconds,\nit reaches a maximum height of " << v*v*sin(angle)*sin(angle)/(2*g) << " metres,\nand travels " << v*v*sin(2*angle)/g << " metres horizontally.";
+        fout << "v=" << v << " angle=" << angle << "rad t=" << 2*v*sin(angle)/g << " hmax=" << v*v*sin(angle)*sin(angle)/(2*g) << " range=" << v*v*sin(2*angle)/g << " (projectile)" << endl;
     }
     else if(option == 0) {
         clear_console();
@@ -818,10 +833,10 @@ void main_menu() {
     int option;
     cout << endl << "===MAIN=MENU==================" << endl;
     cout << "Select a menu item below:" << endl << endl;
-    cout << "[1] Velocity calculations" << endl;
-    cout << "[2] Density calculations" << endl;
+    cout << "[1] Velocity calculations {F}" << endl;
+    cout << "[2] Density calculations {F}" << endl;
     cout << "[3] Energy calculations" << endl;
-    cout << "[4] Free-fall calculations" << endl;
+    cout << "[4] Free-fall calculations {F}" << endl;
     cout << "[5] Electricity bill calculator" << endl;
     cout << "[6] Torque calculations" << endl;
     cout << "===FUN=EXTRAS=================" << endl;
@@ -856,11 +871,13 @@ void main_menu() {
 int main()
 {
     srand(time(0));
+    fout << "====  PHYSICS CALCULATOR  ====" << endl;
+    fout << "CALCULATION HISTORY EXPORT" << endl;
     clear_console();
     cout << "====  PHYSICS CALCULATOR  ====" << endl;
     cout << "------  MADE FOR TERRA  ------" << endl;
     cout << "-------  by Timoti902  -------" << endl << endl;
-    cout << "Note: the app displays SI units by default, but most calculations\nwork with any unit, just be careful with mixing them." << endl << endl;
+    cout << "Note: the app displays SI units by default, but most calculations\nwork with any unit, just be careful with mixing them.\nThe results of calculations marked with {F} will be saved to a results.txt file. This is in beta." << endl << endl;
     do {
         main_menu();
     } while(notExit);
