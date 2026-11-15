@@ -617,6 +617,7 @@ void quiz_menu() {
     cout << "[3] Electricity related questions" << endl;
     cout << "[4] Hand-made, harder questions {**TERRA THEMED**}" << endl;
     cout << "==============================" << endl;
+    cout << "[9] Clear score-board" << endl;
     cout << "[0] Return to main menu" << endl;
     cout << "Enter your selection: ";
     cin >> option;
@@ -705,6 +706,11 @@ void quiz_menu() {
         cout << quiz_questions[question_number].text;
         cin >> answer;
         answer_correctness(answer, quiz_questions[question_number].answer);
+    }
+    else if(option == 9) {
+        quiz_correct=0;
+        quiz_responses=0;
+        cout << "Score-board cleared!";
     }
     else if(option == 0) {
         clear_console();
