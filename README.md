@@ -2,6 +2,11 @@
 
 This is a C++ terminal app, that you can use to do your homework.
 
+I made this application because I wanted to make it easier to calculate some things easier in everyday life.
+I tried adding things that are actually helpful in day-to-day activities, like calculating how long will it take to get between 2 points.
+
+I think I improved a lot since the last C++ project I made.
+
 ## Features
 
 #### You can do the following in the app:
