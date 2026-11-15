@@ -18,9 +18,9 @@ char fun_facts[15][200] {
     "Static friction is usually stronger than kinetic friction, which is why it's harder to start pushing a heavy object than to keep it sliding.",
     "At the top of Mount Everest, gravity is about 0.3% weaker than at sea level.",
     "Sunlight takes about 8 minutes and 20 seconds to reach Earth.",
-    "If an atom were the size of a football stadium, its nucleus would be about the size of a marble",
-    "Voyager 1 is the most distant human-made object ever, currently more than 28 billion km from us",
-    "Water is the densest on 4 degrees Celsius, so it takes up the least amount of space on that temperature."
+    "If an atom were the size of a football stadium, its nucleus would be about the size of a marble.",
+    "Voyager 1 is the most distant human-made object ever, currently more than 28 billion km from us.",
+    "Water is the densest at 4 degrees Celsius, so it takes up the least amount of space on that temperature."
 };
 
 struct questions{
@@ -30,10 +30,10 @@ struct questions{
 
 questions quiz_questions[5] = {
     {4.27, "Ratticus is chasing you, because you did not pay your rent in time. He started 10 meters behind you and after 30 seconds,\nhe is only 2 meters behind you. You are running with 4 m/s. How fast is Ratticus, in m/s? v="},
-    {5.48, "You just got a shiny iPad Air 11\' M4 from Terra, but you're irresponsible and dropped it.\nIt fell from your hands, 1.5 meters high. How fast did it hit the ground, in m/s? v="},
+    {5.48, "You just got a shiny iPad Air 11\' M4 from Terra, but you're irresponsible and dropped it.\nIt fell from your hands, 1.5 meters high. How fast did it hit the ground, in m/s? Let g=10 m/s^2 v="},
     {58.86, "Poobert pushes up 3kg of letters up a 2 meter high ramp. How much potential energy do the letters gain in joules? Let g=9.81 m/s^2. E="},
     {0.61, "You just spent your coins on a Blahaj at the shop, but you accidentally left it there. But no worries, Heide threw it after you at 30 degrees with 7 m/s speed. What was the maximum height Blahaj reached in meters? Let g=10 m/s^2 h="},
-    {3.16, "You asked Blargh to take you to your island. You were really excited but you fell out of\nhis hot air balloon that was 100 meters in the sky.\nHow much time did elapse, until you where at an equal distance from the ground and the hot air balloon, in seconds? t="}
+    {3.16, "You asked Blargh to take you to your island. You were really excited but you fell out of\nhis hot air balloon that was 100 meters in the sky.\nHow much time did elapse, until you were at an equal distance from the ground and the hot air balloon, in seconds? Let g=10 m/s^2 t="}
 };
 
 void clear_console() { // thanks to that guy on stackoverflow
@@ -90,7 +90,7 @@ double potential_Mass(double e, double h) {
 
 void velocity_calc() {
     int option;
-    cout << endl << "VELOCITY" << endl;
+    cout << endl << "===VELOCITY=CALCULATIONS======" << endl;
     cout << "What would you like to know?" << endl;
     cout << "[1] How fast does something travel (v)" << endl;
     cout << "[2] How long does it take to travel a distance (t)" << endl;
@@ -161,7 +161,7 @@ void velocity_calc() {
 
 void density_calc() {
     int option;
-    cout << endl << "DENSITY" << endl;
+    cout << endl << "===DENSITY=CALCULATIONS=======" << endl;
     cout << "What would you like to know?" << endl;
     cout << "[1] The density of something" << endl;
     cout << "[2] The volume of something" << endl;
@@ -238,7 +238,7 @@ void energy_potential();
 
 void energy_calc_menu() {
     int option;
-    cout << endl << "ENERGY" << endl;
+    cout << endl << "===ENERGY=RELATED=CALC.=======" << endl;
     cout << "What type of energy would you like to work with?" << endl;
     cout << "[1] Kinetic energy" << endl;
     cout << "[2] Potential energy" << endl;
@@ -263,7 +263,7 @@ void energy_calc_menu() {
 
 void energy_kinetic() {
     int option;
-    cout << endl << "KINETIC ENERGY" << endl;
+    cout << endl << "===KINETIKC=ENERGY============" << endl;
     cout << "What would you like to know?" << endl;
     cout << "[1] The kinetic energy of something" << endl;
     cout << "[2] The velocity of something" << endl;
@@ -339,7 +339,7 @@ void energy_kinetic() {
 
 void energy_potential() {
     int option;
-    cout << endl << "POTENTIAL ENERGY" << endl;
+    cout << endl << "===POTENTIAL=ENERGY===========" << endl;
     cout << "Currently, the gravitational acceleration is set to " << g << " m/s^2" << endl;
     cout << "What would you like to know?" << endl;
     cout << "[1] The potential energy of something" << endl;
@@ -372,7 +372,7 @@ void energy_potential() {
         cout << "Enter the potential energy (J): ";
         cin >> e;
         while(e<0) {
-            cout << "An object cannot have negative kinetic energy. Please, enter a positive value: ";
+            cout << "An object cannot have negative potential energy. Please, enter a positive value: ";
             cin >> e;
         }
         cout << "Enter the mass (kg): ";
@@ -417,7 +417,7 @@ void energy_potential() {
 void electricity_bill() {
     int option;
     double power, time;
-    cout << endl << "ELECTRICITY BILL CALCULATOR" << endl;
+    cout << endl << "===ELECTRICITY=BILL=CALC.=====" << endl;
     if(price_electricity==0) cout << "NOTE: The price of electricity is currently not set. Please, enter a value by selecting [9]." << endl;
     else cout << "The price of 1 kWh is set to " << price_electricity << endl;
     cout << "What would you like to know?" << endl;
@@ -482,14 +482,14 @@ void electricity_bill() {
 
 void fall_calc() {
     int option;
-    cout << endl << "FREE-FALL CALCULATIONS" << endl;
+    cout << endl << "===FREE-FALL=CALCULATIONS=====" << endl;
     cout << "Currently, the gravitational acceleration is set to " << g << " m/s^2" << endl;
     cout << "NOTE: These calculations don't concern themselfs with air resistence" << endl;
     cout << "What would you like to calculate?" << endl;
     cout << "[1] How fast does an object fall" << endl;
     cout << "[2] Projectile motion (with an angle)" << endl;
     cout << "==============================" << endl;
-    cout << "[0] Return to main menu";
+    cout << "[0] Return to main menu" << endl;
     cout << "Enter your selection: ";
     cin >> option;
     if(option == 1) {
@@ -531,13 +531,13 @@ void fall_calc() {
     cin.ignore();
     cin.get();
     clear_console();
-    electricity_bill();
+    fall_calc();
 
 }
 
 void gravitation_menu() {
     int option;
-    cout << endl << "SELECT PLANET" << endl;
+    cout << endl << "===SELECT=PLANET==============" << endl;
     cout << "Selecting a planet changes the gravitational acceleration. Currently g=" << g << " m/s^2" << endl << endl;
     cout << "Chose a planet/moon below:" << endl;
     cout << "[1] Earth (9.81)" << endl;
@@ -598,7 +598,7 @@ void answer_correctness(double input, double result) {
 
 void quiz_menu() {
     int option;
-    cout << endl << "QUIZZES" << endl;
+    cout << endl << "===QUIZZES====================" << endl;
     cout << "Select a type of quiz from below. You have an error margin of 0.01." << endl;
     cout << "[1] Velocity related questions" << endl;
     cout << "[2] Energy related questions" << endl;
