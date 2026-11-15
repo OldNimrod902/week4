@@ -120,41 +120,45 @@ void velocity_calc() {
         cout << "Enter the distance traveled (m): ";
         cin >> d;
         while(d<0) {
-            cout << "An object cannot travel negative distance. Please, enter a positive value: ";
+            cout << "An object cannot travel negative distance. Please, enter a positive value (m): ";
             cin >> d;
         }
         cout << "Enter the time it took to travel that distance (s): ";
         cin >> t;
         while(t<=0) {
-            cout << "An object cannot travel for a negative amount of time. Please, enter a positive value: ";
+            cout << "An object cannot travel for a negative amount of time. Please, enter a positive value (s): ";
             cin >> t;
         }
         cout << "Your object has a velocity of " << velocity_Velocity(d, t) << " m/s";
     }
     else if(option == 2) {
         double v, d;
-        cout << "Enter the velocity of the object (v): ";
+        cout << "Enter the velocity of the object (m/s): ";
         cin >> v;
         while(v<=0) {
-            cout << "The velocity of an object cannot be negative. Please, enter a positive value: ";
+            cout << "The velocity of an object cannot be negative. Please, enter a positive value (m/s): ";
             cin >> v;
         }
         cout << "Enter the distance traveled (m): ";
         cin >> d;
         while(d<0) {
-            cout << "An object cannot travel negative distance. Please, enter a positive value: ";
+            cout << "An object cannot travel negative distance. Please, enter a positive value (m): ";
             cin >> d;
         }
         cout << "It took " << velocity_Time(d, v) << "s to travel that distance";
     }
     else if(option == 3) {
         double t, v;
-        cout << "Enter the velocity of the object (v): ";
+        cout << "Enter the velocity of the object (m/s): ";
         cin >> v;
-        cout << "Enter for how long did the object move (t): ";
+        while(v<=0) {
+            cout << "The velocity of an object cannot be negative. Please, enter a positive value (m/s): ";
+            cin >> v;
+        }
+        cout << "Enter for how long did the object move (s): ";
         cin >> t;
         while(t<=0) {
-            cout << "An object cannot travel for a negative amount of time. Please, enter a positive value: ";
+            cout << "An object cannot travel for a negative amount of time. Please, enter a positive value (s): ";
             cin >> t;
         }
         cout << "The object traveled " << velocity_Distance(v, t) << "m";
@@ -191,13 +195,13 @@ void density_calc() {
         cout << "Enter the volume (m^3): ";
         cin >> v;
         while(v<=0) {
-            cout << "An object cannot have negative or no volume. Please, enter a positive value: ";
+            cout << "An object cannot have negative or no volume. Please, enter a positive value (m^3): ";
             cin >> v;
         }
         cout << "Enter the mass (kg): ";
         cin >> m;
         while(m<=0) {
-            cout << "An object cannot have negative or no mass. Please, enter a positive value: ";
+            cout << "An object cannot have negative or no mass. Please, enter a positive value (kg): ";
             cin >> m;
         }
         cout << "Your object has a density of " << density_Density(v, m) << " kg/m^3";
@@ -207,13 +211,13 @@ void density_calc() {
         cout << "Enter the density (kg/m^3): ";
         cin >> v;
         while(v<=0) {
-            cout << "An object cannot have negative or no density. Please, enter a positive value: ";
+            cout << "An object cannot have negative or no density. Please, enter a positive value (kg/m^3): ";
             cin >> v;
         }
         cout << "Enter the mass (kg): ";
         cin >> m;
         while(m<=0) {
-            cout << "An object cannot have negative or no mass. Please, enter a positive value: ";
+            cout << "An object cannot have negative or no mass. Please, enter a positive value (kg): ";
             cin >> m;
         }
         cout << "Your object has a volume of " << density_Volume(v, m) << " m^3";
@@ -223,13 +227,13 @@ void density_calc() {
         cout << "Enter the volume (m^3): ";
         cin >> v;
         while(v<=0) {
-            cout << "An object cannot have negative or no volume. Please, enter a positive value: ";
+            cout << "An object cannot have negative or no volume. Please, enter a positive value (m^3): ";
             cin >> v;
         }
         cout << "Enter the density (kg/m^3): ";
         cin >> d;
         while(d<=0) {
-            cout << "An object cannot have negative or no density. Please, enter a positive value: ";
+            cout << "An object cannot have negative or no density. Please, enter a positive value (kg/m^3): ";
             cin >> d;
         }
         cout << "Your object has a mass of " << density_Mass(v, d) << " kg";
@@ -294,13 +298,13 @@ void energy_kinetic() {
         cout << "Enter the velocity (m/s): ";
         cin >> v;
         while(v<0) {
-            cout << "An object cannot have a negative velocity. Please, enter a positive value: ";
+            cout << "An object cannot have a negative velocity. Please, enter a positive value (m/s): ";
             cin >> v;
         }
         cout << "Enter the mass (kg): ";
         cin >> m;
         while(m<=0) {
-            cout << "An object cannot have negative or no mass. Please, enter a positive value: ";
+            cout << "An object cannot have negative or no mass. Please, enter a positive value (kg): ";
             cin >> m;
         }
         cout << "Your object has a kinetic energy of " <<  kinetic_Energy(m, v) << " J";
@@ -310,13 +314,13 @@ void energy_kinetic() {
         cout << "Enter the kinetic energy (J): ";
         cin >> e;
         while(e<0) {
-            cout << "An object cannot have negative kinetic energy. Please, enter a positive value: ";
+            cout << "An object cannot have negative kinetic energy. Please, enter a positive value (J): ";
             cin >> e;
         }
         cout << "Enter the mass (kg): ";
         cin >> m;
         while(m<=0) {
-            cout << "An object cannot have negative or no mass. Please, enter a positive value: ";
+            cout << "An object cannot have negative or no mass. Please, enter a positive value (kg): ";
             cin >> m;
         }
         cout << "Your object has a velocity of " <<  kinetic_Velocity(e, m)<< " m/s";
@@ -326,13 +330,13 @@ void energy_kinetic() {
         cout << "Enter the kinetic energy (J): ";
         cin >> e;
         while(e<0) {
-            cout << "An object cannot have negative kinetic energy. Please, enter a positive value: ";
+            cout << "An object cannot have negative kinetic energy. Please, enter a positive value (J): ";
             cin >> e;
         }
         cout << "Enter the velocity (m/s): ";
         cin >> v;
         while(v<=0) {
-            cout << "An object cannot have a negative velocity. Please, enter a positive value: ";
+            cout << "An object cannot have a negative velocity. Please, enter a positive value (m/s): ";
             cin >> v;
         }
         cout << "Your object has a mass of " <<  kinetic_Mass(v, e) << " kg";
@@ -371,13 +375,13 @@ void energy_potential() {
         cout << "Enter the height (m): ";
         cin >> h;
         while(h<0) {
-            cout << "An object cannot have a negative height. Please, enter a positive value: ";
+            cout << "An object cannot have a negative height. Please, enter a positive value (m): ";
             cin >> h;
         }
         cout << "Enter the mass (kg): ";
         cin >> m;
         while(m<=0) {
-            cout << "An object cannot have negative or no mass. Please, enter a positive value: ";
+            cout << "An object cannot have negative or no mass. Please, enter a positive value (kg): ";
             cin >> m;
         }
         cout << "Your object has a potential energy of " <<  potential_Energy(m, h) << " J";
@@ -387,13 +391,13 @@ void energy_potential() {
         cout << "Enter the potential energy (J): ";
         cin >> e;
         while(e<0) {
-            cout << "An object cannot have negative potential energy. Please, enter a positive value: ";
+            cout << "An object cannot have negative potential energy. Please, enter a positive value (J): ";
             cin >> e;
         }
         cout << "Enter the mass (kg): ";
         cin >> m;
         while(m<=0) {
-            cout << "An object cannot have negative or no mass. Please, enter a positive value: ";
+            cout << "An object cannot have negative or no mass. Please, enter a positive value (kg): ";
             cin >> m;
         }
         cout << "Your object is " <<  potential_Height(e, m) << " m above the ground";
@@ -403,13 +407,13 @@ void energy_potential() {
         cout << "Enter the potential energy (J): ";
         cin >> e;
         while(e<0) {
-            cout << "An object cannot have negative kinetic energy. Please, enter a positive value: ";
+            cout << "An object cannot have negative kinetic energy. Please, enter a positive value (J): ";
             cin >> e;
         }
         cout << "Enter the height (m): ";
         cin >> h;
         while(h<=0) {
-            cout << "An object cannot have a negative height. Please, enter a positive value: ";
+            cout << "An object cannot have a negative height. Please, enter a positive value (h): ";
             cin >> h;
         }
         cout << "Your object has a mass of " <<  potential_Mass(e, h) << " kg";
@@ -460,13 +464,13 @@ void electricity_bill() {
         cout << "Enter how much is the hourly consumption of the device in watts: ";
         cin >> power;
         while(power<0) {
-            cout << "Your device can\'t have negative consumption. Enter a positive value: ";
+            cout << "Your device can\'t have negative consumption. Enter a positive value (W): ";
             cin >> power;
         }
         cout << "Enter for how long did you use the device (hours): ";
         cin >> time;
         while(time<0) {
-            cout << "Your device can\'t be used for a negative amount of time. Enter a positive value: ";
+            cout << "Your device can\'t be used for a negative amount of time. Enter a positive value (h): ";
             cin >> time;
         }
         cout << "Your device consumed " << power*time/1000 << " kWhs and, it cost you " << power*time*price_electricity/1000; 
@@ -512,7 +516,7 @@ void fall_calc() {
         cout << "Enter the height from which the object falls (m): ";
         cin >> h;
         while(h<0) {
-            cout << "The height cannot be a negative value. Please enter a non-negative value: ";
+            cout << "The height cannot be a negative value. Please enter a non-negative value (m): ";
             cin >> h;
         }
         cout << "Your objects reaches the ground in " << sqrt(2*h/g) << " seconds, and at moment of collission it has a velocity of " << sqrt(2*g*h) << " m/s";
@@ -523,13 +527,13 @@ void fall_calc() {
         cout << "Enter the velocity at which the object gets launched (m/s): ";
         cin >> v;
         while(v<0) {
-            cout << "The velocity cannot be a negative value. Please enter a non-negative value: ";
+            cout << "The velocity cannot be a negative value. Please enter a non-negative value (m/s): ";
             cin >> v;
         }
         cout << "Enter the angle at which the object gets launched (degrees): ";
         cin >> angle;
         while(angle<0) {
-            cout << "The angle cannot be a negative value. Please enter a non-negative value: ";
+            cout << "The angle cannot be a negative value. Please enter a non-negative value (degrees): ";
             cin >> angle;
         }
         angle=angle*M_PI/180;
@@ -567,13 +571,13 @@ void torque_calc() {
         cout << "Enter the lever arm length (m): ";
         cin >> l;
         while(l<0) {
-            cout << "The lever arm length cannot be a negative number. Please enter a positive value: ";
+            cout << "The lever arm length cannot be a negative number. Please enter a positive value (m): ";
             cin >> l;
         }
         cout << "Enter the force (N): ";
         cin >> f;
         while(f<0) {
-            cout << "The force in this case cannot be a negative number. Please enter a positive value: ";
+            cout << "The force in this case cannot be a negative number. Please enter a positive value (N): ";
             cin >> f;
         }
         cout << "The torque is " << torque_Torque(f, l) << " N*m";
@@ -582,13 +586,13 @@ void torque_calc() {
         cout << "Enter the torque (N*m): ";
         cin >> t;
         while(t<0) {
-            cout << "The torque cannot be a negative number. Please enter a positive value: ";
+            cout << "The torque cannot be a negative number. Please enter a positive value (N*m): ";
             cin >> t;
         }
         cout << "Enter the force (N): ";
         cin >> f;
         while(f<=0) {
-            cout << "The force in this case cannot be a negative/zero number. Please enter a positive value: ";
+            cout << "The force in this case cannot be a negative/zero number. Please enter a positive value (N): ";
             cin >> f;
         }
         cout << "The lever arm length is " << torque_Lenght(t, f) << " m";
@@ -597,13 +601,13 @@ void torque_calc() {
         cout << "Enter the torque (N*m): ";
         cin >> t;
         while(t<0) {
-            cout << "The torque cannot be a negative number. Please enter a positive value: ";
+            cout << "The torque cannot be a negative number. Please enter a positive value (N*m): ";
             cin >> t;
         }
         cout << "Enter the lever arm length (m): ";
         cin >> l;
         while(l<=0) {
-            cout << "The lever arm length cannot be a negative number. Please enter a positive value: ";
+            cout << "The lever arm length cannot be a negative number. Please enter a positive value (m): ";
             cin >> l;
         }
         cout << "The force is " << torque_Force(t, l) << " N";
@@ -640,10 +644,10 @@ void gravitation_menu() {
     else if(option == 3) g=3.72;
     else if(option == 4) g=8.87;
     else if(option == 5) {
-        cout << "Enter your custom gravitational acceleration: ";
+        cout << "Enter your custom gravitational acceleration (m/s^2): ";
         cin >> g;
         while(g==0) {
-            cout << "The gravitational acceleration cannot be 0. Enter a non-zero value: ";
+            cout << "The gravitational acceleration cannot be 0. Enter a non-zero value (m/s^2): ";
             cin >> g;
         }
         while(g<0) {
@@ -651,7 +655,7 @@ void gravitation_menu() {
             cout << "Are you sure that on your planet things fall upwards? Enter [Y/N]: ";
             cin >> answer;
             if(toupper(answer) == 'N') {
-                cout << "Then enter a positive value: ";
+                cout << "Then enter a positive value (m/s^2): ";
                 cin >> g;
                 if(g==0) g=9.81; // I dont know how to check if the user enters 0, then a negative number, then N, then 0 again, so if that happens, the g just will be 9.81. Sorry xD
             }
