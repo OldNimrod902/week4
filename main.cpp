@@ -5,6 +5,9 @@ bool notExit=true;
 double g=9.81;
 double price_electricity = 0;
 
+int quiz_responses=0;
+int quiz_correct=0;
+
 char fun_facts[15][200] {
     "Isaac Newton published his three laws of motion in Principia in 1687.",
     "One newton is roughly the weight of a small apple.",
@@ -592,7 +595,11 @@ void fun_fact_finder() {
 }
 
 void answer_correctness(double input, double result) {
-    if(fabs(input-result)<0.01) cout << "Amazing! You're right!" << endl;
+    quiz_responses++;
+    if(fabs(input-result)<0.01) {
+        cout << "Amazing! You're right!" << endl;
+        quiz_correct++;
+    }
     else cout << "You're wrong. The correct answer was " << result << endl;
 }
 
@@ -600,6 +607,11 @@ void quiz_menu() {
     int option;
     cout << endl << "===QUIZZES====================" << endl;
     cout << "Select a type of quiz from below. You have an error margin of 0.01." << endl;
+    cout << "Let g=" << g << " m/s^2 if not indicated otherwise." << endl;
+    cout << "SCORE: You anwered " << quiz_correct << " questions correctly." << endl;
+    cout << "WIN-RATE: ";
+    if(quiz_responses==0) cout << "0%" << endl;
+    else cout << quiz_correct*100.0/quiz_responses << "%" << endl; 
     cout << "[1] Velocity related questions" << endl;
     cout << "[2] Energy related questions" << endl;
     cout << "[3] Electricity related questions" << endl;
