@@ -91,6 +91,18 @@ double potential_Mass(double e, double h) {
     return e/(h*g);
 }
 
+double torque_Torque(double f, double l) {
+    return f*l;
+}
+
+double torque_Force(double t, double l) {
+    return t/l;
+}
+
+double torque_Lenght(double t, double f) {
+    return t/f;
+}
+
 void velocity_calc() {
     int option;
     cout << endl << "===VELOCITY=CALCULATIONS======" << endl;
@@ -538,6 +550,78 @@ void fall_calc() {
 
 }
 
+void torque_calc() {
+    int option;
+    double f, l, t;
+    cout << endl << "===TORQUE=CALCULATIONS========" << endl;
+    cout << "What would you like to calculate?" << endl;
+    cout << "[1] How large is the torque of a force (N*m)" << endl;
+    cout << "[2] How long is the lever arm length for a torque (m)" << endl;
+    cout << "[3] How large is the force needed to produce a torque (N)" << endl;
+    cout << "==============================" << endl;
+    cout << "[0] Return to main menu" << endl;
+    cout << "Enter your selection: ";
+    cin >> option;
+    
+    if(option == 1) {
+        cout << "Enter the lever arm length (m): ";
+        cin >> l;
+        while(l<0) {
+            cout << "The lever arm length cannot be a negative number. Please enter a positive value: ";
+            cin >> l;
+        }
+        cout << "Enter the force (N): ";
+        cin >> f;
+        while(f<0) {
+            cout << "The force in this case cannot be a negative number. Please enter a positive value: ";
+            cin >> f;
+        }
+        cout << "The torque is " << torque_Torque(f, l) << " N*m";
+    }
+    else if(option == 2) {
+        cout << "Enter the torque (N*m): ";
+        cin >> t;
+        while(t<0) {
+            cout << "The torque cannot be a negative number. Please enter a positive value: ";
+            cin >> t;
+        }
+        cout << "Enter the force (N): ";
+        cin >> f;
+        while(f<=0) {
+            cout << "The force in this case cannot be a negative/zero number. Please enter a positive value: ";
+            cin >> f;
+        }
+        cout << "The lever arm length is " << torque_Lenght(t, f) << " m";
+    }
+    else if(option == 3) {
+        cout << "Enter the torque (N*m): ";
+        cin >> t;
+        while(t<0) {
+            cout << "The torque cannot be a negative number. Please enter a positive value: ";
+            cin >> t;
+        }
+        cout << "Enter the lever arm length (m): ";
+        cin >> l;
+        while(l<=0) {
+            cout << "The lever arm length cannot be a negative number. Please enter a positive value: ";
+            cin >> l;
+        }
+        cout << "The force is " << torque_Force(t, l) << " N";
+    }
+    else if(option==0) {
+        clear_console();
+        return;
+    }
+    else {
+        cout << "No such option exists.";
+    }
+    cout << endl << "Press enter to return";
+    cin.ignore();
+    cin.get();
+    clear_console();
+    torque_calc();
+}
+
 void gravitation_menu() {
     int option;
     cout << endl << "===SELECT=PLANET==============" << endl;
@@ -735,6 +819,7 @@ void main_menu() {
     cout << "[3] Energy calculations" << endl;
     cout << "[4] Free-fall calculations" << endl;
     cout << "[5] Electricity bill calculator" << endl;
+    cout << "[6] Torque calculations" << endl;
     cout << "===FUN=EXTRAS=================" << endl;
     cout << "[7] Quiz" << endl;
     cout << "[8] Very fun facts" << endl;
@@ -750,6 +835,7 @@ void main_menu() {
     else if(option == 3) energy_calc_menu();
     else if(option == 4) fall_calc();
     else if(option == 5) electricity_bill();
+    else if(option == 6) torque_calc();
     else if(option == 7) quiz_menu();
     else if(option == 8) fun_fact_finder();
     else if(option == 9) gravitation_menu();
