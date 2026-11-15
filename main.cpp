@@ -566,7 +566,7 @@ void gravitation_menu() {
             if(toupper(answer) == 'N') {
                 cout << "Then enter a positive value: ";
                 cin >> g;
-                if(g==0) g=9.81; // I dont know how to check if the user enters 0, then a negative number, then N, then 0 again, so if that happens, the g just will be 0. Sorry xD
+                if(g==0) g=9.81; // I dont know how to check if the user enters 0, then a negative number, then N, then 0 again, so if that happens, the g just will be 9.81. Sorry xD
             }
             else if(toupper(answer) == 'Y') break;
         }
@@ -659,8 +659,8 @@ void quiz_menu() {
         }
     }
     else if(option == 3) {
-        double power, time, price, priceOfOne;
-        int type = rand()%2+1;
+        double power, time, price, priceOfOne, consume, input;
+        int type = rand()%3+1;
         if(type==1) {
             power=rand()%781+20;
             time=rand()%20+1;
@@ -675,6 +675,14 @@ void quiz_menu() {
             cout << "You consumed " << power << " kWh of electricity this month, and your bill was " << price << " dollars. How much does a kWh of electricity cost you, in dollars? price=";
             cin >> priceOfOne;
             answer_correctness(priceOfOne, price/power);
+        }
+        else if(type==3) {
+            power=rand()%200+400;
+            time=rand()%16+5;
+            consume=power*time;
+            cout << "A device in your kitchen runs on " << power << " watts of electricity and it consumed " << consume/1000 << " kWh of electricity. For how long was that device plugged in, in hours? t=";
+            cin >> input;
+            answer_correctness(input, time);
         }
     }
     else if(option == 4) {
